@@ -32,7 +32,7 @@ class NCDFDataset(Dataset):
 		del dataset
 
 	def __getitem__(self, index):
-		return (self.x[index,:,:5,:,:], self.y[index,:,:,:,:]#self.y[index,:,:,:])
+		return (self.x[index,:,:5,:,:], self.y[index,:,:,:,:])#self.y[index,:,:,:])
 
 	def __len__(self):
 		return self.x.shape[0]
