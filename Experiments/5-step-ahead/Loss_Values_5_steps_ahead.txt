@@ -1,0 +1,22 @@
+/* V4 */
+STConvS2S_v4 RMSELoss: 6.3661
+STConvS2S_AN_20 epochs RMSELoss: 6.3343
+STConvS2S_Mish_Adamod RMSELoss: 6.3198
+STConvS2S_SE RMSELoss: 6.3010
+
+STTSModel_Mish_Adamod_BN_Dropout_v4 RMSELoss: 6.3243
+STTSModel_Mish_Adamod_BN_Dropout_v4_SE RMSELoss: 6.3225
+
+/* v1 */
+
+W/ last state of encoder fed as input every decoder time-step
+STTSModel_Mish_Adamod_BN_Dropout RMSELoss: 6.5464
+
+W/ previous hidden state sent as input
+STTSModel_Mish_Adamod_BN_Dropout RMSELoss: 6.3053
+
+Teacher Forcing:
+STTSModel_Mish_Adamod_BN_Dropout RMSELoss: 6.4622
+
+Zero input every time-step;
+STTSModel_Mish_Adamod_BN_Dropout_v4 RMSELoss: 6.3398
