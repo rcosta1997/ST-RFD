@@ -1,0 +1,12 @@
+STConvS2S RMSELoss: 1.4172
+STConvS2S_Mish_Adamod RMSELoss: 1.3548
+STConvS2S_SE RMSELoss: 1.2864
+STFF Model RMSELoss: 1.2662
+ConvLSTM RMSELoss: 2.6459
+
+MAE:
+STConvS2S : 0.9904
+STConvS2S_Mish_Adamod : 0.9327
+STConvS2S_SE : 0.8872
+STFModel : 0.8312
+ConvLSTM : 1.6836

@@ -1,0 +1,48 @@
+MAE:
+STConvS2S L1Loss: 2.3421 (updated)
+STConvS2S_Mish_Adamod L1Loss: 2.3466 (updated)
+STConvS2S_SE L1Loss: 2.3352 (updated)
+ConvLSTM L1Loss: 2.3694
+
+RMSE:
+STConvS2S_v4 RMSELoss: 6.3311
+STConvS2S_Mish_Adamod RMSELoss: 6.3172
+STConvS2S_SE RMSELoss: 6.2942
+STConvS2S_SE_EvoNorm_B0 RMSELoss: 6.2654
+ConvLSTM RMSELoss: 6.3874
+
+STTSModel RMSELoss: 6.3761
+STTSModel_GridMask RMSELoss: 6.3211
+STTSModel_EvoNorm_B0 RMSELoss: 6.3210
+STTSModel_EvoNorm_S0 RMSELoss: 6.3663
+
+
+STTSModel_3D RMSELoss: 6.1889
+STTSModel_3D_EvoNormB0 RMSELoss: 6.1784
+STTSModel_3D_EvoNormB0_3D RMSELoss: 6.1733
+STTSModel_3D_EvoNormS0 RMSELoss: 6.2000
+STTSModel_3D_EvoNormS0_3D RMSELoss: 6.1821
+
+With LR=0.0001
+STTSModel_3D RMSELoss: 6.2248
+STTSModel_3D_EvoNormB0 RMSELoss: 6.1717
+STTSModel_3D_EvoNormB0_3D RMSELoss: 6.1721
+
+Dropout STTSModel_3D RMSELoss (CHIRPS, 0.0001 LR):
+0.2 - 6.2248
+0.4 - 6.2310
+0.6 - 6.2471
+0.8 - 6.2562
+
+GridMask experiments (lr = 0.0001):
+
+Fixed prob:
+p = 0.5, ratio = 0.5 : 6.2155
+p = 1.0, ratio = 0.5 : 6.2151
+p = 1.0, ratio = 0.4 : 6.2018
+
+Increasing probs:
+max_prob = 0.8, max_epochs=10 : 6.2402
+
+Apply mask at every time-step:
+Fixed prob p = 1.0, ratio = 0.4 : 6.1904

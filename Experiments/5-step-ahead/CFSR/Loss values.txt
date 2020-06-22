@@ -1,0 +1,26 @@
+MAE:
+STConvS2S L1Loss: 1.0491
+STConvS2S_Mish_Adamod L1Loss: 1.0397
+STConvS2S_SE L1Loss: 0.9945
+ConvLSTM: 1.5171
+
+
+STTModel_3D L1Loss 1.0506
+
+RMSE:
+STConvS2S_v4 RMSELoss: 1.5896
+STConvS2S_v4_Mish_Adamod RMSELoss: 1.4674
+STConvS2S_SE RMSELoss: 1.4727
+STFModel RMSELoss: 1.5584
+ConvLSTM: 2.2369
+
+
+Gridmask experiments (in MAE, 0.001 LR):
+Fixed prob:
+p = 0.7, ratio = 0.4, mask every time-step : 1.0766
+p = 0.7, ratio = 0.6, mask every time-step : 1.0810
+p = 0.7, ratio = 0.8, mask every time-step : 
+p = 0.7, ratio = 0.4 : 1.0862
+p += every epoch, max p = 0.7, ratio = 0.4, mask every TS : 1.0759
+p += every epoch, max p = 0.7, ratio = 0.4 : 1.0726
+p += every epoch, max p = 0.7, ratio = 0.6 : 1.0855

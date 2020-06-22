@@ -1,0 +1,12 @@
+Loss w.r.t missing TS only:
+STConvS2S:
+MAE: 2.4869
+RMSE: 5.8437
+R2:  0.2767
+
+
+Loss w.r.t sequence:
+STConvS2S:
+MAE: 2.6004
+RMSE: 5.8031
+R2: 0.2843

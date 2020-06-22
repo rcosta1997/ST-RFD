@@ -1,8 +1,0 @@
-16 epochs training
-
-Test dataset results:
-STConvS2S RMSELoss: 6.4644
-STConvS2S_Mish_Adamod RMSELoss: 6.4737
-
-STTSModel RMSELoss: 6.2824
-STTSModel_Mish_Adamod RMSELoss: 6.3918

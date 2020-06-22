@@ -1,0 +1,26 @@
+MAE:
+STConvS2S_V4: 2.3443 (updated)
+STConv2S_MA: 2.3419 (updated)
+STConvS2S_SE_MAE L1Loss: 2.3106 (updated)
+ConvLSTM L1Loss: 2.4065
+STModel L1Loss: 2.2336
+
+
+RMSE:
+/* V4 */
+STConvS2S_v4 RMSELoss: 6.3769 (updated)
+STConvS2S_Mish_Adamod RMSELoss: 6.3226 (updated)
+STConvS2S_AN RMSELoss: 6.2865
+STConvS2S_SE RMSELoss: 6.2660 (updated)
+ConvLSTM RMSELoss: 6.4999
+STModel RMSELoss: 6.1193
+
+STModel_Updated RMSELoss: 5.9244
+(AR output 1 value per pixel, input: each pixel = 1 row, 5 cells
+within each row corresponding to that pixel's values for each TS)
+STModel_Updated_AR RMSELoss: 5.9437
+(AR receives mean value of each time-step, outputs 1 single value
+per batch).
+STModel_Updated_ARv2 5.9003
+
+STModel_EvoNorm_B0 RMSELoss: 5.9280
