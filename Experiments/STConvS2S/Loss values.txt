@@ -1,3 +1,0 @@
-15 epochs:
-STConvS2S RMSELoss: 6.3387
-Mish + AdaMod optimizer RMSELoss: 6.3364
