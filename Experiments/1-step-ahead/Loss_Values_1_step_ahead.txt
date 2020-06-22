@@ -1,0 +1,26 @@
+Test dataset results:
+/* V1 */
+STConvS2S RMSELoss: 6.4644
+STConvS2S_Mish_Adamod RMSELoss: 6.4589
+STConvS2S_Residual_Encoder RMSELoss: 6.4789
+STConvS2S_Residual RMSELoss: 6.5511
+STConvS2S_SE RMSELoss: 6.4122
+
+/* V4 */
+STConvS2S_v4 RMSELoss: 6.4169
+STConvS2S_Mish_Adamod RMSELoss: 6.3554
+STConvS2S_AN RMSELoss: 6.2865
+STConvS2S_SE RMSELoss: 6.2705
+
+/* V1 */
+STTSModel RMSELoss: 6.4281
+STTSModel_Mish_Adamod RMSELoss: 6.2687
+STTSModel_Mish_Adamod_BN_Dropout RMSELoss: 6.0714
+STTSModel_Mogrifier RMSELoss: 6.3117
+STTSModel_Mogrifier_BN RMSELoss: 6.0759
+STTSModel_Mogrifier_BN_Dropout RMSELoss: 6.0762
+STTSModel_Mogrifier_BN_Dropout_2Layer RMSELoss: 6.0898
+
+/* V4 */
+STTSModel_Mish_Adamod_BN_Dropout_v4 RMSELoss: 6.2226
+STTSModel_Mish_Adamod_BN_Dropout_v4_SE RMSELoss: 6.0830
