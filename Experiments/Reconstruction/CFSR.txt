@@ -1,18 +1,48 @@
 Loss w.r.t missing time-step only:
-ConvLSTM: 2.2024
-STConvS2S: 1.1487
-ST-RFD: 0.9763
-ST-RFD EvoNorm B0-3D: 1.0061
-ST-RFD EvoNorm B0: 1.1636 (wtf)
+ConvLSTM: 
+MAE:
+RMSE:
+R2:
+
+STConvS2S: 
+MAE: 0.6054
+RMSE: 0.8578
+R2: 0.9879
+
+ST-RFD:
+MAE: 0.6893
+RMSE: 0.9589
+R2: 0.9852
+
+ST-RFD EvoNorm B0-3D: 
+MAE: 0.7079
+RMSE: 0.9826
+R2: 0.9844
+
+ST-RFD EvoNorm B0: 
+
 
 Loss w.r.t whole sequence, w=0.9 for missing TS.
-STConvS2S: 0.9715
-ST-RFD: 0.9451
-ST-RFD EvoNorm B0-3D: 0.9526
+ConvLSTM:
+MAE: 0.7716
+RMSE: 1.0465
+R2: 0.9822
+
+STConvS2S: 
+MAE: 0.6202
+RMSE: 0.8757
+R2: 0.9874
+
+ST-RFD:
+MAE: 0.6822
+RMSE: 0.9540
+R2: 0.9853
+
+ST-RFD EvoNorm B0-3D: 0.9526 (update)
 ConvLSTM *********** (Redo w/ patience=5 and best=2.506367 or
 implement bidirectional convlstm if i have time).
 
-ST-RFD EvoNorm B0:
-MAE: 0.6977
-RMSE: 0.9663
-R2 = 0.9849
+ST-RFD EvoNorm B0: 
+MAE: 0.6966
+RMSE: 0.9648
+R2 = 0.9850

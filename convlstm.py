@@ -115,6 +115,7 @@ class ConvLSTM(nn.Module):
         if not self.batch_first:
             # (c, b, t, h, w) -> (b, c, t, h, w)
             input_tensor.permute(1, 0, 2, 3, 4)
+            input_tensor.permute(1, 0, 2, 3, 4)
 
         # Implement stateful ConvLSTM
         if hidden_state is not None:
@@ -166,3 +167,27 @@ class ConvLSTM(nn.Module):
         if not isinstance(param, list):
             param = [param] * num_layers
         return param
+
+class BConvLSTM(nn.Module):
+    def __init__(self, input_size, input_dim, hidden_dim, kernel_size, num_layers, 
+                 batch_first=False, bias=True, return_all_layers=False):
+        super(BConvLSTM, self).__init__()
+
+        self.batch_first = batch_first
+
+        self.forward_net = ConvLSTM(input_size, input_dim, hidden_dim, kernel_size, num_layers, batch_first, bias, return_all_layers)
+        self.backward_net = ConvLSTM(input_size, input_dim, hidden_dim, kernel_size, num_layers, batch_first, bias, return_all_layers)
+
+    def forward(self, input_tensor_forward, input_tensor_backward, hidden_state=None):
+        if not self.batch_first:
+            # (c, b, t, h, w) -> (b, c, t, h, w)
+            input_tensor_forward.permute(1, 0, 2, 3, 4)
+            input_tensor_backward.permute(1, 0, 2, 3, 4)
+
+        y_out_fwd, h_fwd = self.forward_net(input_tensor_forward, hidden_state)
+        y_out_bckd, h_bckd = self.backward_net(input_tensor_backward, hidden_state)
+        y_out_fwd = y_out_fwd[0]
+        y_out_bckd = y_out_bckd[0]
+
+        y_out_bckd = torch.flip(y_out_bckd, [2])
+        return (y_out_fwd + y_out_bckd)/2

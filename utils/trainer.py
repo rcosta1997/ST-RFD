@@ -43,22 +43,30 @@ class Trainer():
 		train_loss = self.model.train()
 		epoch_train_loss = 0.0
 		for i, (x, y, removed) in enumerate(self.train_data):
-			x,y,removed = x.to(self.device), y.to(self.device), removed.to(self.device)
+			x,y, removed = x.to(self.device), y.to(self.device), removed.to(self.device)
 			if (self.grid is not None):
 				x_grid = self.grid(x)
 			self.optimizer.zero_grad()
 			x_in = x if self.grid == None else x_grid
-			if (self.recurrent_model and not self.is_reconstruction):
-				states = self.init_hidden(x.size()[0], x.size()[3]*x.size()[4])
-				if (self.lilw):
-					output = self.model(x_in,states, original_x = x)
+			if (self.recurrent_model):
+				if (self.is_reconstruction):
+						states_fwd = self.init_hidden(x.size()[0], x.size()[3]*x.size()[4])
+						states_bckwd = self.init_hidden(x.size()[0], x.size()[3]*x.size()[4])
+						if (self.lilw):
+							output = self.model(x, states_fwd, states_bckwd, removed, original_x = x)
+						else:
+							output = self.model(x, states_fwd, states_bckwd, removed)
 				else:
-					output = self.model(x_in,states)
+					states = self.init_hidden(x.size()[0], x.size()[3]*x.size()[4])
+					if (self.lilw):
+						output = self.model(x, states, original_x = x)
+					else:
+						output = self.model(x,states)
 			else:
 				output = self.model(x_in)
 			#batch : channel : time-steps : lat : lon
 			if (self.cut_output and not self.recurrent_model):
-				loss = self.criterion(output[:,:,0,:,:], y[:,:,0,:,:])
+				loss = self.criterion(output[:,:,0,:,:], y)
 			else:
 				loss = self.criterion(output, y, removed)
 			loss.backward()
@@ -73,13 +81,18 @@ class Trainer():
 		with torch.no_grad():
 			for i, (x, y, removed) in enumerate(self.val_data):
 				x,y, removed = x.to(self.device), y.to(self.device), removed.to(self.device)
-				if (self.recurrent_model and not self.is_reconstruction):
-					states = self.init_hidden(x.size()[0], x.size()[3]*x.size()[4])
-					output = self.model(x,states)
+				if (self.recurrent_model):
+					if (self.is_reconstruction):
+						states_fwd = self.init_hidden(x.size()[0], x.size()[3]*x.size()[4])
+						states_bckwd = self.init_hidden(x.size()[0], x.size()[3]*x.size()[4])
+						output = self.model(x, states_fwd, states_bckwd, removed)
+					else:
+						states = self.init_hidden(x.size()[0], x.size()[3]*x.size()[4])
+						output = self.model(x,states)
 				else:
 					output = self.model(x)
 				if (self.cut_output and not self.recurrent_model):
-					loss = self.criterion(output[:,:,0,:,:], y[:,:,0,:,:])
+					loss = self.criterion(output[:,:,0,:,:], y)
 				else:
 					loss = self.criterion(output, y, removed)
 				epoch_val_loss += loss.detach().item()
@@ -142,8 +155,8 @@ class Tester():
 		batch_test_loss = 0.0
 		self.model.eval()
 		with torch.no_grad():
-			for i, (x, y, removed) in enumerate(self.test_data):
-				x,y, removed = x.to(self.device), y.to(self.device), removed.to(self.device)
+			for i, (x, y) in enumerate(self.test_data):
+				x,y = x.to(self.device), y.to(self.device)
 				if (self.recurrent_model):
 					states = self.init_hidden(x.size()[0], x.size()[3]*x.size()[4])
 					output = self.model(x, states)
@@ -152,7 +165,7 @@ class Tester():
 				if (self.cut_output and not self.recurrent_model):
 					loss = self.criterion(output[:,:,0,:,:], y[:,:,0,:,:])
 				else:
-					loss = self.criterion(output, y, removed)
+					loss = self.criterion(output, y)
 				batch_test_loss += loss.detach().item()
 		test_loss = batch_test_loss/len(self.test_data)
 		return test_loss

@@ -96,7 +96,7 @@ class EvoNorm2D(nn.Module):
 
 class EvoNorm3D(nn.Module):
 
-    def __init__(self, input, sequence = 5, non_linear = True, version = 'S0', momentum = 0.9):
+    def __init__(self, input, sequence = 10, non_linear = True, version = 'S0', momentum = 0.9):
         super(EvoNorm3D, self).__init__()
         self.non_linear = non_linear
         self.version = version
